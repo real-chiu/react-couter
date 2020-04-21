@@ -23,14 +23,14 @@ export default class CounterGroup extends Component {
   }
 
   render() {
-    let counters = this.initArray(this.state.size);
+    let counters = this.initArray(this.props.size);
     return (
       <div>
-        <form>
+        {/* <form>
           <input type="text"  value={this.state.size} onChange={this.handleValueChange}/>
-        </form>
+        </form> */}
         {
-          counters.map((value) =><Counter key={value}/>)
+          counters.map((value, index) =><Counter key={value} index={index}/>)
         }
       </div>
     )

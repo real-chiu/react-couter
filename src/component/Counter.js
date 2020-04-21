@@ -31,6 +31,7 @@ import React, { Component } from 'react'
   render() {
     return (
       <div>
+        <span>{this.props.index}</span>
         <button onClick={this.onIncrementCounter}>+</button>
         <span>{this.state.count}</span>
         <button onClick={this.onDecrementCounter}>-</button>
