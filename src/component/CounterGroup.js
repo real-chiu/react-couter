@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Counter from './Counter';
-import { INIT_COUNTER_SIZE } from '../constant/constants';
+import { INIT_COUNTER_SIZE, INCREMENT, DECREMENT } from '../constant/constants';
 
 export default class CounterGroup extends Component {
   constructor(props) {
@@ -8,9 +8,30 @@ export default class CounterGroup extends Component {
 
     this.state = {
       size: INIT_COUNTER_SIZE,
+      sum: 0
     }
   }
 
+  calculateSum = (action) => {
+    switch (action) {
+      case INCREMENT:
+        this.setState((prevState) => {
+          return {
+            sum: prevState.sum + 1
+          }
+        });
+        break;
+      case DECREMENT:
+        this.setState((prevState) => {
+          return {
+            sum: prevState.sum - 1
+          }
+        });
+        break;
+      default:
+    }
+  }
+  
   handleValueChange = (event) => {
     const value = event.target.value
     this.setState({
@@ -32,7 +53,7 @@ export default class CounterGroup extends Component {
             <input type="text" value={this.state.size} onChange={this.handleValueChange} />
           </form>
           <div>Counters</div>
-          <div>Sum is: </div>
+          <div>Sum is: {this.state.sum}</div>
         </div>
 
         {
