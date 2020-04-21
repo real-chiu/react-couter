@@ -10,7 +10,7 @@ export default class CounterGroup extends Component {
 
     this.state = {
       size: INIT_COUNTER_SIZE,
-      sum: 0
+      sum: 0,
     }
   }
 
@@ -38,9 +38,17 @@ export default class CounterGroup extends Component {
     const value = event.target.value
     this.setState({
       size: value.length > 0 ? parseInt(value) : 0,
-      sum: 0,
     });
   }
+
+  decrementSumWhenUnmounting = (count) => {
+    this.setState((prevState) => {
+      return {
+        sum: prevState.sum - count
+      }
+    })
+  }
+  
 
   initArray = (size) => {
     return Array.from(Array(size).keys());
@@ -58,9 +66,8 @@ export default class CounterGroup extends Component {
           <div>Counters</div>
           <div>Sum is: {this.state.sum}</div>
         </div>
-
         {
-          counters.map((value, index) => <Counter key={value} index={index} onCalculate={this.calculateSum} />)
+          counters.map((value, index) => <Counter key={value} index={index} onCalculate={this.calculateSum} decrementSumWhenUnmounting={this.decrementSumWhenUnmounting} />)
         }
       </div>
     )

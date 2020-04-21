@@ -21,6 +21,10 @@ import { INCREMENT, DECREMENT } from '../constant/constants';
     }
   }
 
+  componentWillUnmount() {
+    this.props.decrementSumWhenUnmounting(this.state.count);
+  }
+
   onIncrementCounter = () => {
     this.setState((prevState) => {
       return {
