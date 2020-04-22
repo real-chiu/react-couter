@@ -30,6 +30,8 @@ export default class TodoContainer extends Component {
         <Col span={8}/>
           <Col span={8}>
             {this.state.todoElements.map((todoElement) => <TodoElemet key={todoElement.id} info={todoElement}/>)}
+            <Divider orientation="center" style={{ color: '#333', fontWeight: 'normal' }}/>
+            <TodoInput/>
           </Col>
         <Col span={8}/>
       </Row>
