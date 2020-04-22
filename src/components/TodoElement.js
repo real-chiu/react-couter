@@ -35,7 +35,7 @@ export default class TodoElement extends Component {
             </Text>
           </Col>
           <Col>
-            <Button shape="circle" size="small" icon={<CloseOutlined />} />
+            <Button onClick={() => this.props.deleteTodoElement(this.props.info.id)} shape="circle" size="small" icon={<CloseOutlined />} />
           </Col>
         </Row>
       </Card>

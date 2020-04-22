@@ -10,6 +10,7 @@ export default class TodoContainer extends Component {
     super(props)
     
     this.addTodoItem = this.addTodoItem.bind(this);
+    this.deleteTodoElement = this.deleteTodoElement.bind(this);
 
     this.state = {
        todoElements: []
@@ -25,12 +26,20 @@ export default class TodoContainer extends Component {
       content: inputValue,
       status: true
     }
-    
+
     let newTodoElements = [];
     newTodoElements.push(...this.state.todoElements, newTodoItem);
 
     this.setState({
       todoElements: newTodoElements
+    })
+  }
+
+  deleteTodoElement = (id) => {
+    console.log("deleted");
+    let filteredTodoItems = this.state.todoElements.filter((todoElement) => todoElement.id !== id);
+    this.setState({
+      todoElements: filteredTodoItems
     })
   }
 
@@ -50,7 +59,7 @@ export default class TodoContainer extends Component {
       <Row>
         <Col span={8}/>
           <Col span={8}>
-            {this.state.todoElements.map((todoElement) => <TodoElemet key={todoElement.id} info={todoElement}/>)}
+            {this.state.todoElements.map((todoElement) => <TodoElemet key={todoElement.id} info={todoElement} deleteTodoElement={this.deleteTodoElement}/>)}
             <Divider orientation="center" style={{ color: '#333', fontWeight: 'normal' }}/>
             <TodoInput addTodoItem={this.addTodoItem}/>
           </Col>
