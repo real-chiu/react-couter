@@ -57,7 +57,7 @@ export default class TodoContainer extends Component {
 
   render() {
     return (
-      <Row>
+      <Row gutter={[0, 16]}>
         <Col span={8}/>
           <Col span={8}>
             {this.state.todoElements.map((todoElement) => <TodoElemet key={todoElement.id} info={todoElement} deleteTodoElement={this.deleteTodoElement}/>)}
