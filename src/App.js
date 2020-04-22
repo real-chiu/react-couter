@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Counter from './component/Counter';
+import 'antd/dist/antd.css';
+
 import CounterGroup from './component/CounterGroup';
 
 function App() {

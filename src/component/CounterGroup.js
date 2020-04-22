@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
+import { Input, Typography, Row, Col } from 'antd';
+
 import Counter from './Counter';
 import CounterApis from '../apis/CounterApis';
 import { INIT_COUNTER_SIZE, INCREMENT, DECREMENT, INIT_SUM } from '../constant/constants';
+
+const { Text } = Typography;
+
+const textStyle = {
+  fontSize: "20px"
+}
 
 export default class CounterGroup extends Component {
   constructor(props) {
@@ -78,14 +86,22 @@ export default class CounterGroup extends Component {
     let counters = this.initArray(this.state.size);
     return (
       <div>
-        <div>
-          <div>Generate</div>
-          <form>
-            <input type="text" value={this.state.size} onChange={this.handleValueChange} />
-          </form>
-          <div>Counters</div>
-          <div>Sum is: {this.state.sum}</div>
-        </div>
+        <Row gutter={16}>
+          <Col>
+            <Text style={textStyle} >Generate</Text>
+          </Col>
+          <Col>
+            <Input type="text" value={this.state.size} onChange={this.handleValueChange} />
+          </Col>
+          <Col>
+            <Text style={textStyle} >Counters</Text>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={24}>
+            <Text style={textStyle} >Sum is: <Text underline>{this.state.sum}</Text> </Text>
+          </Col>
+        </Row>
         {
           counters.map((value, index) => <Counter key={value} index={index} onCalculate={this.calculateSum} decrementSumWhenUnmounting={this.decrementSumWhenUnmounting} />)
         }

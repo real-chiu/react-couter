@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
+import { Button, Space, Typography  } from 'antd';
+
 import { INCREMENT, DECREMENT, INIT_COUNTER_VALUE } from '../constant/constants';
 
- class Counter extends Component {
+const { Text } = Typography;
+
+const textStyle = {
+  fontSize: "20px"
+}
+
+export default class Counter extends Component {
   constructor(props) {
     super(props)
     
@@ -45,13 +53,12 @@ import { INCREMENT, DECREMENT, INIT_COUNTER_VALUE } from '../constant/constants'
   render() {
     return (
       <div>
-        <span>{this.props.index}</span>
-        <button onClick={this.onIncrementCounter}>+</button>
-        <span>{this.state.count}</span>
-        <button onClick={this.onDecrementCounter}>-</button>
+        <Space>
+          <Button type="primary" onClick={this.onIncrementCounter}>+</Button>
+          <Text style={textStyle} type="secondary">{this.state.count}</Text>
+          <Button type="primary"  onClick={this.onDecrementCounter}>-</Button>
+        </Space>
       </div>
     )
   }
 }
-
-export default Counter;
