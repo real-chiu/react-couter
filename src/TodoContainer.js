@@ -40,7 +40,7 @@ export default class TodoContainer extends Component {
     let filteredTodoItems = this.state.todoElements.filter((todoElement) => todoElement.id !== id);
     this.setState({
       todoElements: filteredTodoItems
-    })
+    });
   }
 
   componentDidMount() {
