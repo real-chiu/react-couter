@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Counter from './Counter';
 import CounterApis from '../apis/CounterApis';
 import { INIT_COUNTER_SIZE, INCREMENT, DECREMENT, INIT_SUM } from '../constant/constants';
-import Axios from 'axios';
 
 export default class CounterGroup extends Component {
   constructor(props) {
@@ -18,13 +17,14 @@ export default class CounterGroup extends Component {
 
   componentDidMount() {
     CounterApis.getCounterSize().then((response) => {
+      console.log(response);
       let size = response.data.size;
       this.setState({size});
     }).catch((error) => {
       console.log(error)
     })
   }
-  
+
   calculateSum = (action) => {
     switch (action) {
       case INCREMENT:
@@ -44,11 +44,21 @@ export default class CounterGroup extends Component {
       default:
     }
   }
-
+  
   handleValueChange = (event) => {
     const value = event.target.value
     this.setState({
       size: value.length > 0 ? parseInt(value) : 0,
+    }, () => {
+      CounterApis.setCounterSize(value).then((response) => {
+        const size = response.data.size;
+        console.log(size);
+        this.setState({
+          size
+        });
+      }).catch((error) => {
+        console.log(error)
+      })
     });
   }
 
