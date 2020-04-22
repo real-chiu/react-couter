@@ -21,7 +21,7 @@ export default class TodoContainer extends Component {
     const requestBody = {
       content: inputValue
     }
-    TodoApis.addTodoElements(requestBody).then((response) => {
+    TodoApis.addTodoElement(requestBody).then((response) => {
       let newTodoElements = [];
       newTodoElements.push(...this.state.todoElements, response.data);
       this.setState({
@@ -33,7 +33,7 @@ export default class TodoContainer extends Component {
   }
 
   deleteTodoElement = (id) => {
-    TodoApis.deleteTodoElements(id).then((response) => {
+    TodoApis.deleteTodoElement(id).then((response) => {
       let deletedItemId = response.data.id;
       let filteredTodoItems = this.state.todoElements.filter((todoElement) => todoElement.id !== deletedItemId);
       this.setState({
