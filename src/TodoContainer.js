@@ -18,20 +18,17 @@ export default class TodoContainer extends Component {
   }
   
   addTodoItem = (inputValue) => {
-    const lastTodoElement = this.state.todoElements[this.state.todoElements.length - 1];
-    const latestId = lastTodoElement ? lastTodoElement.id : 1;
-
-    const newTodoItem = {
-      id: (parseInt(latestId) + 1).toString(),
-      content: inputValue,
-      status: true
+    const requestBody = {
+      content: inputValue
     }
-
-    let newTodoElements = [];
-    newTodoElements.push(...this.state.todoElements, newTodoItem);
-
-    this.setState({
-      todoElements: newTodoElements
+    TodoApis.addTodoElements(requestBody).then((response) => {
+      let newTodoElements = [];
+      newTodoElements.push(...this.state.todoElements, response.data);
+      this.setState({
+        todoElements: newTodoElements
+      })
+    }).catch((error) => {
+      console.log(error);
     })
   }
 
@@ -44,7 +41,7 @@ export default class TodoContainer extends Component {
   }
 
   componentDidMount() {
-    TodoApis.getTodoElemets().then((response) => {
+    TodoApis.getTodoElements().then((response) => {
       console.log(response.data);
       this.setState({
         todoElements: response.data
