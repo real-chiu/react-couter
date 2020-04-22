@@ -13,7 +13,7 @@ export default class TodoApis  {
     return axios.put(`https://5e9ec500fb467500166c4658.mockapi.io/todos/${id}`, requestBody);
   }
 
-  static deleteTodoElements() {
-    return axios.delete(`https://5e9ec500fb467500166c4658.mockapi.io/todos`);
+  static deleteTodoElements(id) {
+    return axios.delete(`https://5e9ec500fb467500166c4658.mockapi.io/todos/${id}`);
   }
 }

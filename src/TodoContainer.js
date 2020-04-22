@@ -33,11 +33,15 @@ export default class TodoContainer extends Component {
   }
 
   deleteTodoElement = (id) => {
-    console.log("deleted");
-    let filteredTodoItems = this.state.todoElements.filter((todoElement) => todoElement.id !== id);
-    this.setState({
-      todoElements: filteredTodoItems
-    });
+    TodoApis.deleteTodoElements(id).then((response) => {
+      let deletedItemId = response.data.id;
+      let filteredTodoItems = this.state.todoElements.filter((todoElement) => todoElement.id !== deletedItemId);
+      this.setState({
+        todoElements: filteredTodoItems
+      });
+    }).catch((error) => {
+      console.log(error);
+    }) 
   }
 
   componentDidMount() {
