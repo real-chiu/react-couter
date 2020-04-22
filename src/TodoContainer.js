@@ -8,12 +8,32 @@ import TodoElemet from './components/TodoElement';
 export default class TodoContainer extends Component {
   constructor(props) {
     super(props)
-  
+    
+    this.addTodoItem = this.addTodoItem.bind(this);
+
     this.state = {
        todoElements: []
     }
   }
   
+  addTodoItem = (inputValue) => {
+    const lastTodoElement = this.state.todoElements[this.state.todoElements.length - 1];
+    const latestId = lastTodoElement ? lastTodoElement.id : 1;
+
+    const newTodoItem = {
+      id: (parseInt(latestId) + 1).toString(),
+      content: inputValue,
+      status: true
+    }
+    
+    let newTodoElements = [];
+    newTodoElements.push(...this.state.todoElements, newTodoItem);
+
+    this.setState({
+      todoElements: newTodoElements
+    })
+  }
+
   componentDidMount() {
     TodoApis.getTodoElemets().then((response) => {
       console.log(response.data);
@@ -24,6 +44,7 @@ export default class TodoContainer extends Component {
       console.log(error);
     })
   }
+
   render() {
     return (
       <Row>
@@ -31,7 +52,7 @@ export default class TodoContainer extends Component {
           <Col span={8}>
             {this.state.todoElements.map((todoElement) => <TodoElemet key={todoElement.id} info={todoElement}/>)}
             <Divider orientation="center" style={{ color: '#333', fontWeight: 'normal' }}/>
-            <TodoInput/>
+            <TodoInput addTodoItem={this.addTodoItem}/>
           </Col>
         <Col span={8}/>
       </Row>

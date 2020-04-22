@@ -6,7 +6,7 @@ export default class TodoInput extends Component {
     super(props)
   
     this.onChange = this.onChange.bind(this);
-
+    this.addTodoItemAndResetValue = this.addTodoItemAndResetValue.bind(this);
     this.state = {
       inputValue: ""
     }
@@ -18,6 +18,12 @@ export default class TodoInput extends Component {
       inputValue: event.target.value
     });
   }
+
+  addTodoItemAndResetValue = () => {
+    this.props.addTodoItem(this.state.inputValue);
+    this.setState({inputValue: ""});
+  }
+
   render() {
     return (
       <Input 
@@ -25,6 +31,7 @@ export default class TodoInput extends Component {
         size="large"
         value={this.state.inputValue}
         onChange={this.onChange}
+        onPressEnter={this.addTodoItemAndResetValue}
       />
     )
   }
