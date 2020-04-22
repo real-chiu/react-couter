@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Card, Typography } from 'antd';
-
+import { Card, Typography, Button, Row, Col } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
 const { Text } = Typography;
 
 const cardStyle = {
@@ -9,18 +9,25 @@ const cardStyle = {
 export default class TodoElement extends Component {
   constructor(props) {
     super(props)
-  
+
     this.state = {
-       
+      status: props.status
     }
   }
-  
+
   render() {
     return (
       <Card style={cardStyle} hoverable size="small">
-        <Text>
-          {this.props.info.content}
-        </Text>
+        <Row justify="space-between">
+          <Col>
+            <Text>
+              {this.props.info.content}
+            </Text>
+          </Col>
+          <Col>
+            <Button shape="circle" size="small" icon={<CloseOutlined />} />
+          </Col>
+        </Row>
       </Card>
     )
   }
