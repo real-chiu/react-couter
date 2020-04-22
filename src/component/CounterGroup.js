@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Counter from './Counter';
-import { INIT_COUNTER_SIZE, INCREMENT, DECREMENT } from '../constant/constants';
+import { INIT_COUNTER_SIZE, INCREMENT, DECREMENT, INIT_SUM } from '../constant/constants';
 
 export default class CounterGroup extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export default class CounterGroup extends Component {
 
     this.state = {
       size: INIT_COUNTER_SIZE,
-      sum: 0,
+      sum: INIT_SUM,
     }
   }
 
@@ -49,7 +49,6 @@ export default class CounterGroup extends Component {
     })
   }
   
-
   initArray = (size) => {
     return Array.from(Array(size).keys());
   }

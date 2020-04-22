@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { INCREMENT, DECREMENT } from '../constant/constants';
+import { INCREMENT, DECREMENT, INIT_COUNTER_VALUE } from '../constant/constants';
 
  class Counter extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ import { INCREMENT, DECREMENT } from '../constant/constants';
     this.onIncrementCounter = this.onIncrementCounter.bind(this);
     this.onDecrementCounter = this.onDecrementCounter.bind(this);
     this.state = {
-       count: 0
+       count: INIT_COUNTER_VALUE
     }
   }
 
